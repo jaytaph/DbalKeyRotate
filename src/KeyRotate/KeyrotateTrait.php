@@ -17,22 +17,22 @@ trait KeyrotateTrait
      */
     public function connect(array $params, $username = null, $password = null, array $driverOptions = [])
     {
-        if (! isset($params['options']['cache'])) {
+        if (! isset($driverOptions['cache'])) {
             throw DBALException::optionNotSet('cache');
         }
 
-        if (! isset($params['options']['secretId'])) {
+        if (! isset($driverOptions['secretId'])) {
             throw DBALException::optionNotSet('secretId');
         }
 
-        $cache = $params['options']['cache'];
+        $cache = $driverOptions['cache'];
         if (! $cache instanceof Cache) {
             throw DBALException::invalidCacheClass();
         }
 
         $cacheId = $params['host'];
 
-        $retries = $params['options']['retries'] ?? 5;
+        $retries = $driverOptions['retries'] ?? 5;
         while ($retries > 0) {
             try {
                 if (! $cache->contains($cacheId)) {
@@ -43,8 +43,8 @@ trait KeyrotateTrait
                     } else {
                         // No cache found and no local username, fetch credentials from AWS
                         list($user, $pass) = $this->fetchCredentialsFromAWS(
-                            $params['options']['secretId'],
-                            $params['options']['awsOptions'] ?? []
+                            $driverOptions['secretId'],
+                            $driverOptions['awsOptions'] ?? []
                         );
                         $cache->save($cacheId, array($user, $pass));
                     }

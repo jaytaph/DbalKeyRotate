@@ -24,7 +24,7 @@ be tried first. If you do not need this behaviour, you can leave the username an
         'password' => '',              
         'host' => 'mydb.1234.eu-west-1.rds.amazonaws.com',
         'driverClass' => KeyRotate\Driver::class,
-        'options' => [
+        'driverOptions' => [
             'cache' => new PhpFileCache(sys_get_temp_dir()),
             'secretId' => /secret/database-2
             'retries' => 5,
@@ -34,16 +34,16 @@ be tried first. If you do not need this behaviour, you can leave the username an
 
 The driver class needs a few options in order to work:
 
-cache
+cache:
     The drivers needs an mandatory cache service in order to function. This is a class that implements Doctrine\Cache.
 
-secretId
+secretId:
     The actual secret that must be retrieved.
 
-retries
+retries:
     The number of tries of database connection and key fetching that must be done before giving up.
    
-awsOptions
+awsOptions:
     An array of AWS options send to the AWS client. This chould consist of region, profile etc. Probably not needed
     when running on an ecs/ec2 instance where AWS credentials and information are automatically fetched by the AWS 
     client.
