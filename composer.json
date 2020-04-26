@@ -1,5 +1,6 @@
 {
-    "name": "noxlogic/keyrotate",
+    "name": "noxlogic/dbalkeyrotate",
+    "type": "library",
     "authors": [
         {
             "name": "Joshua Thijssen",

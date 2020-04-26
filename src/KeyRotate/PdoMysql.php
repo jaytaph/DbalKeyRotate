@@ -2,6 +2,9 @@
 
 namespace KeyRotate;
 
-class PdoMysql extends BaseDriver
+use Doctrine\DBAL\Driver\PDOMySql\Driver;
+
+class PdoMysql extends Driver
 {
+    use KeyrotateTrait;
 }
