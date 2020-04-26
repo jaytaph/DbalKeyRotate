@@ -1,5 +1,8 @@
 {
     "name": "noxlogic/dbalkeyrotate",
+    "description": "DBAL driver for AWS secrets manager key rotation",
+    "keywords": [ "dbal", "doctrine", "aws", "secretsmanager", "key-rotate" ],
+    "license": "MIT",
     "type": "library",
     "authors": [
         {
@@ -8,6 +11,7 @@
         }
     ],
     "require": {
+        "php": "^7.2",
         "doctrine/dbal": "^2.10",
         "aws/aws-sdk-php": "^3.135",
         "ext-json": "*"
